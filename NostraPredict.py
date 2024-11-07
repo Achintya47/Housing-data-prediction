@@ -28,10 +28,6 @@ mymodel3=list(map(myfunc,x))
 
 myline=numpy.linspace(2000,16000,100)
 
-print("R2 score of Polynomial regression(degree 3): ",r2_score(y,mymodel1(x)))
-
-print("R2 Score of Linear regression:",r2_score(y,mymodel3))
-
 area1=int(input("Enter the area for Price prediction: "))
 
 polyprice=mymodel1(area1)
@@ -52,6 +48,10 @@ plt.title("NostraPredict")
 plt.xlabel("Area of houses")
 
 plt.ylabel("Price of Houses")
+
+print("R2 score of Polynomial regression(degree 3): ",r2_score(y,mymodel1(x)))
+
+print("R2 Score of Linear regression:",r2_score(y,mymodel3))
 
 plt.legend()
 
