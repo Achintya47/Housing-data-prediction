@@ -8,7 +8,7 @@ This is my first ever actual project, and its a work in progress(So is my ML Kno
 
 ABOUT THE PROJECT's CURRENT STATE:
   ~ Currently, I've successfully implemented Linear Regression and Polynomial Regression on my model, however, the R2_Score for both is low which is a clear indication that Linear Regression cannot suffice
-    As Housing prices depend on multiple factors. Further, Multiple regression(4 Variabe) has been implemented and the R2 score has improved.
+    As Housing prices depend on multiple factors. Further, Multiple regression(4 Variable) has been implemented and the R2 score has improved.
 
 PREVIEW OF "housing.csv:
   ~Housing prices is the first column followed Area, Bathrooms...Furnishing status. 
