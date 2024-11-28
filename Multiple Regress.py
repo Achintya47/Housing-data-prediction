@@ -1,49 +1,48 @@
-#Multiple regression
+import matplotlib.pyplot as plt
+import numpy
 import pandas as pd
-from sklearn import linear_model
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_percentage_error
+
+df=pd.read_csv("/kaggle/input/housing-prices-data/Housing.csv")
+X=df[["area","bedrooms","bathrooms","stories","parking"]]
+y=df["price"]
 
 
-df=pd.read_csv('Housing.csv')
+# imputer=SimpleImputer(stratey='mean')
 
-X=df[['area','bedrooms','bathrooms','stories']] #Starting with two variables
+# imputer=imputer.fit(X)
+# X=imputer.transform(X)
 
-Y=df['price']
+# scaler=StandardScaler()
 
-regrobj=linear_model.LinearRegression()
-
-regrobj.fit(X,Y)
-
-predlist=[]
-y1=[]
-
-for index,row in df.iterrows():
-    y1.append(row['price'])
+# X=scaler.fit_transform(X)
+# y-scaler.fit_transform(y)
 
 
-for index, row in df.iterrows():
-    x1=row['area']
-    x2=row['bedrooms']
-    x3=row['bathrooms']
-    x4=row['stories']
-    predlist.append((regrobj.predict([[x1,x2,x3,x4]])))
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-x1=int(input("Enter the Area: "))
-x2=int(input("Enter the Bedrooms: "))
-x3=int(input("Enter the Bathrooms: "))
-x4=int(input("Enter the Stories: "))
+pipeline=Pipeline([
+    ('imputer', SimpleImputer(strategy='mean')),
+    ('scaler', StandardScaler()),
+    ('model', LinearRegression())
+])
 
-
-
-predvalue=regrobj.predict([[x1,x2,x3,x4]])
-
-print("Predicted House Price is: ",predvalue)
-
-print("R2 Score for multiple regress: ",r2_score(y1,predlist))
-
-print(regrobj.coef_)
+# pipeline=Pipeline([
+#     ('imputer', SimpleImputer(strategy='mean')),
+#     ('scaler', StandardScaler()),
+#     ('model', RandomForestRegressor(n_estimators=100, random_state=42))
+# ])
 
 
+pipeline.fit(X_train,y_train)
 
+predictions=pipeline.predict(X_test)
 
-
+print(mean_absolute_percentage_error(predictions,y_test))    
