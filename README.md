@@ -15,10 +15,4 @@ PREVIEW OF "housing.csv:
    Apart from numerical values, we have Yes/No (Which can be converted to Binary) and for furnishing status,
     There are three values, Furnished, Semi-Furnished and Unfurnished.
     
-WHAT NEEDS TO BE DONE:
-  ~Scaling of All the Values for accurate predictions
-  ~Using Sklearn's Train_Test function to divide the dataset
-  ~For Furnishing Status, I'll implement both, a binary approach by assigning values to the three furnishing statuses
-   and ONE-HOT matrix approach, as that would be used in models that are more complex in the future.
-  ~After the Rough implementation, I will be using the Sklearn libraries more to proceed further.
-  
+
